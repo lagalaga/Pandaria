@@ -14,7 +14,14 @@ public class PandariaDbHelper extends SQLiteOpenHelper {
 
     public void onCreate(SQLiteDatabase db){
         db.execSQL(IngredienteContract.SQL_CREATE_ENTRIES);
-
+        db.execSQL(DespesaContract.SQL_CREATE_ENTRIES);
+        db.execSQL(EncomendaContract.SQL_CREATE_ENTRIES);
+        db.execSQL(EstoqueContract.SQL_CREATE_ENTRIES);
+        db.execSQL(ItemContract.SQL_CREATE_ENTRIES);
+        db.execSQL(ProdutoContract.SQL_CREATE_ENTRIES);
+        db.execSQL(ProdutoIngredienteContract.SQL_CREATE_ENTRIES);
+        db.execSQL(VendaContract.SQL_CREATE_ENTRIES);
+        
     }
 
     public void onUpgrade(SQLiteDatabase db,int oldVersion,int newVersion){
