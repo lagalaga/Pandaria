@@ -1,8 +1,5 @@
 package br.com.pandaria.Entity;
 
-/**
- * Created by SilvaSoA2 on 31/08/2016.
- */
 public enum TipoDeIngrediente {
 
     INGREDIENTE("INGREDIENTE"),
@@ -10,7 +7,7 @@ public enum TipoDeIngrediente {
 
     private String desc;
 
-    private TipoDeIngrediente(String desc){
+    TipoDeIngrediente(String desc){
         this.desc = desc;
     }
 

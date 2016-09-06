@@ -3,16 +3,16 @@ package br.com.pandaria.Entity;
 
 public class Ingrediente {
 
-    private long id;
+    private int id;
     private String nome;
     private float qtdDoPacote;
     private TipoDeIngrediente tipoDeIngrediente;
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

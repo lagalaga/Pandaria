@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Estoque {
 
-    private long id;
+    private int id;
     private float qtdDePacotes;
     private Date data;
     private float precoUnit;
@@ -15,11 +15,11 @@ public class Estoque {
         this.ingrediente = new Ingrediente();
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Venda {
 
-    private long id;
+    private int id;
     private Date dateVenda;
     private List<Item> items;
 
@@ -18,7 +18,7 @@ public class Venda {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

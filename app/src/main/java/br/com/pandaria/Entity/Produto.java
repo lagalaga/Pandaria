@@ -5,20 +5,21 @@ import java.util.HashMap;
 
 public class Produto {
 
-    private long id;
+    private int id;
     private String nome;
     private float precoDeVenda;
+    private  boolean ingrediente;
     private HashMap<Ingrediente,Float> ingredientes;
 
     public Produto(){
         this.ingredientes = new HashMap<>();
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -44,5 +45,13 @@ public class Produto {
 
     public void setIngredientes(HashMap<Ingrediente, Float> ingredientes) {
         this.ingredientes = ingredientes;
+    }
+
+    public boolean isIngrediente() {
+        return ingrediente;
+    }
+
+    public void setIngrediente(boolean ingrediente) {
+        this.ingrediente = ingrediente;
     }
 }
