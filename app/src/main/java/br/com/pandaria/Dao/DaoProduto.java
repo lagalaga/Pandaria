@@ -101,10 +101,10 @@ public class DaoProduto {
         this.db = helper.getReadableDatabase();
         List<Produto> produtos = new ArrayList<>();
         Produto produto;
-        String selection;
-        String[] args = {};
+        DaoIngrediente daoIngrediente = new DaoIngrediente();
+        List<Ingrediente> ingredientes;
 
-        Cursor c, i;
+        Cursor c;
 
         if (idProd == 0) {
             c = db.query(
@@ -117,48 +117,50 @@ public class DaoProduto {
                     null
             );
 
-            c.moveToFirst();
-            while (c.moveToNext()) {
 
-                produto = new Produto();
-                produto.setId(c.getLong(c.getColumnIndex(ProdutoContract.Produto._ID)));
-                produto.setNome(c.getString(c.getColumnIndex(ProdutoContract.Produto.NOME_COLUNA_NOME)));
-                produto.setPrecoDeVenda(c.getFloat(c.getColumnIndex(ProdutoContract.Produto.NOME_COLUNA_VALOR_DE_VENDA)));
-                produto.setIngrediente(c.getInt(c.getColumnIndex(ProdutoContract.Produto.NOME_COLUNA_IS_INGREDIENTE)));
-
-                produto.setIngredientes(dpi.listarIngredientes(idProd, db));
-
-                selection = IngredienteContract.Ingrediente._ID + " = ?";
-                for (Map.Entry<Ingrediente, Float> ingrediente : produto.getIngredientes().entrySet()) {
-
-                    args[0] = Long.toString(ingrediente.getKey().getId());
-                    i = db.query(
-                            IngredienteContract.Ingrediente.NOME_TABELA,
-                            null,
-                            selection,
-                            args,
-                            null,
-                            null,
-                            null
-                    );
-
-                    i.moveToFirst();
-                    while (i.moveToNext()) {
-
-
-                    }
-
-                }
-
-
-                produtos.add(produto);
-            }
-            c.close();
         } else {
+
+            String selection = IngredienteContract.Ingrediente._ID + " = ?";
+            String[] args = {Long.toString(idProd)};
+            c = db.query(
+                    ProdutoContract.Produto.NOME_TABELA,
+                    null,
+                    selection,
+                    args,
+                    null,
+                    null,
+                    null
+            );
+
+
 
         }
 
-        return produtos;
+        c.moveToFirst();
+        while (c.moveToNext()) {
 
+            produto = new Produto();
+            produto.setId(c.getLong(c.getColumnIndex(ProdutoContract.Produto._ID)));
+            produto.setNome(c.getString(c.getColumnIndex(ProdutoContract.Produto.NOME_COLUNA_NOME)));
+            produto.setPrecoDeVenda(c.getFloat(c.getColumnIndex(ProdutoContract.Produto.NOME_COLUNA_VALOR_DE_VENDA)));
+            produto.setIngrediente(c.getInt(c.getColumnIndex(ProdutoContract.Produto.NOME_COLUNA_IS_INGREDIENTE)));
+
+            produto.setIngredientes(dpi.listarIngredientes(idProd, db));
+
+
+            for (Map.Entry<Ingrediente, Float> ingrediente : produto.getIngredientes().entrySet()) {
+
+                ingredientes = daoIngrediente.listarIngredientes(ingrediente.getKey().getId(),helper);
+                ingrediente.getKey().setNome(ingredientes.get(0).getNome());
+                ingrediente.getKey().setQtdDoPacote(ingredientes.get(0).getQtdDoPacote());
+                ingrediente.getKey().setTipoDeIngrediente(ingredientes.get(0).getTipoDeIngrediente().toString());
+            }
+
+
+            produtos.add(produto);
+        }
+        c.close();
+        db.close();
+        return produtos;
     }
 }

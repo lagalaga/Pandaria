@@ -24,14 +24,7 @@ public class DaoIngrediente {
         values.put(IngredienteContract.Ingrediente.NOME_COLUNA_TIPO,ingrediente.getTipoDeIngrediente().toString());
         values.put(IngredienteContract.Ingrediente.NOME_COLUNA_QTD,ingrediente.getQtdDoPacote());
 
-        if(db.insert(IngredienteContract.Ingrediente.NOME_TABELA,null,values) == -1){
-
-            return false;
-
-        }
-        else{
-            return true;
-        }
+        return db.insert(IngredienteContract.Ingrediente.NOME_TABELA, null, values) != -1;
     }
 
     public boolean deletar(int id, SQLiteOpenHelper helper) {
@@ -90,18 +83,7 @@ public class DaoIngrediente {
                     null
             );
 
-            c.moveToFirst();
-            while(c.moveToNext()){
 
-                ingrediente = new Ingrediente();
-                ingrediente.setId(c.getInt(c.getColumnIndex(IngredienteContract.Ingrediente._ID)));
-                ingrediente.setNome(c.getString(c.getColumnIndex(IngredienteContract.Ingrediente.NOME_COLUNA_NOME)));
-                ingrediente.setQtdDoPacote(c.getFloat(c.getColumnIndex(IngredienteContract.Ingrediente.NOME_COLUNA_QTD)));
-                ingrediente.setTipoDeIngrediente(c.getString(c.getColumnIndex(IngredienteContract.Ingrediente.NOME_COLUNA_TIPO)));
-
-                ingredientes.add(ingrediente);
-            }
-            c.close();
         }else{
 
             String selection = IngredienteContract.Ingrediente._ID;
@@ -117,7 +99,10 @@ public class DaoIngrediente {
 
             );
 
-            c.moveToFirst();
+        }
+
+        c.moveToFirst();
+        while(c.moveToNext()){
 
             ingrediente = new Ingrediente();
             ingrediente.setId(c.getInt(c.getColumnIndex(IngredienteContract.Ingrediente._ID)));
@@ -126,16 +111,10 @@ public class DaoIngrediente {
             ingrediente.setTipoDeIngrediente(c.getString(c.getColumnIndex(IngredienteContract.Ingrediente.NOME_COLUNA_TIPO)));
 
             ingredientes.add(ingrediente);
-
-            db.close();
         }
-
-
-
-
+        c.close();
 
         return ingredientes;
-
     }
 
 
