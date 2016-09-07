@@ -3,7 +3,7 @@ package br.com.pandaria.Entity;
 public class Item {
 
     private Produto produto;
-    private int qtd;
+    private long qtd;
 
     public Item(){
         this.produto = new Produto();
@@ -17,11 +17,11 @@ public class Item {
         this.produto = produto;
     }
 
-    public int getQtd() {
+    public long getQtd() {
         return qtd;
     }
 
-    public void setQtd(int qtd) {
+    public void setQtd(long qtd) {
         this.qtd = qtd;
     }
 }

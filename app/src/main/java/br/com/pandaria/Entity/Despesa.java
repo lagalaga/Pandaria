@@ -5,16 +5,16 @@ import java.util.Date;
 
 public class Despesa {
 
-    private int id;
+    private long id;
     private String descricao;
     private float valor;
     private Date data;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
