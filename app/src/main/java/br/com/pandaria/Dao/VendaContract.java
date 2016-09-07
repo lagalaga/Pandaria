@@ -3,7 +3,7 @@ package br.com.pandaria.Dao;
 import android.provider.BaseColumns;
 
 
-public class VendaContract {
+public final class VendaContract {
 
     private VendaContract(){}
 
@@ -20,7 +20,7 @@ public class VendaContract {
     protected static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + Venda.NOME_TABELA + " (" +
                     Venda._ID + " INTEGER PRIMARY KEY," +
-                    Venda.NOME_COLUNA_DATA + DATE_TYPE + COMMA_SEP +
+                    Venda.NOME_COLUNA_DATA + DATE_TYPE +
                     " )";
 
     protected static final String SQL_DELETE_ENTRIES =

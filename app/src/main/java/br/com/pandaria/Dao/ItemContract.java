@@ -2,7 +2,7 @@ package br.com.pandaria.Dao;
 
 import android.provider.BaseColumns;
 
-public class ItemContract {
+public final class ItemContract {
 
     private ItemContract(){}
 

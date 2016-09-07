@@ -2,7 +2,7 @@ package br.com.pandaria.Dao;
 
 import android.provider.BaseColumns;
 
-public class EncomendaContract {
+public final class EncomendaContract {
 
     private EncomendaContract(){}
 
