@@ -51,7 +51,7 @@ public class Produto {
         return ingrediente;
     }
 
-    public void setIngrediente(boolean ingrediente) {
-        this.ingrediente = ingrediente;
+    public void setIngrediente(int ingrediente) {
+        this.ingrediente = ingrediente == 0 ? false : true;
     }
 }
