@@ -36,7 +36,7 @@ public class Ingrediente {
         return tipoDeIngrediente;
     }
 
-    public void setTipoDeIngrediente(TipoDeIngrediente tipoDeIngrediente) {
-        this.tipoDeIngrediente = tipoDeIngrediente;
+    public void setTipoDeIngrediente(String tipo) {
+      this.tipoDeIngrediente = TipoDeIngrediente.valueOf(tipo);
     }
 }
