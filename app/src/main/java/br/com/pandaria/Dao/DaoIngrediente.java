@@ -61,7 +61,7 @@ public class DaoIngrediente {
         values.put(IngredienteContract.Ingrediente.NOME_COLUNA_QTD, ingrediente.getQtdDoPacote());
 
         String selection = IngredienteContract.Ingrediente._ID + " = ? ";
-        String[] selectionArgs = {Integer.toString(ingrediente.getId())};
+        String[] selectionArgs = {Long.toString(ingrediente.getId())};
 
         if (db.update(IngredienteContract.Ingrediente.NOME_TABELA, values, selection, selectionArgs) > 0) {
             db.close();
@@ -72,24 +72,52 @@ public class DaoIngrediente {
         }
     }
 
-    public List<Ingrediente> listarIngredientes(SQLiteOpenHelper helper){
+    public List<Ingrediente> listarIngredientes(long idIngrediente,SQLiteOpenHelper helper){
 
         this.db = helper.getReadableDatabase();
         List<Ingrediente> ingredientes = new ArrayList<>();
         Ingrediente ingrediente;
+        Cursor c;
 
-        Cursor c = db.query(
-                DespesaContract.Despesa.NOME_TABELA,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null
-        );
+        if(idIngrediente == 0){
+             c = db.query(
+                    IngredienteContract.Ingrediente.NOME_TABELA,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+            );
 
-        c.moveToFirst();
-        while(c.moveToNext()){
+            c.moveToFirst();
+            while(c.moveToNext()){
+
+                ingrediente = new Ingrediente();
+                ingrediente.setId(c.getInt(c.getColumnIndex(IngredienteContract.Ingrediente._ID)));
+                ingrediente.setNome(c.getString(c.getColumnIndex(IngredienteContract.Ingrediente.NOME_COLUNA_NOME)));
+                ingrediente.setQtdDoPacote(c.getFloat(c.getColumnIndex(IngredienteContract.Ingrediente.NOME_COLUNA_QTD)));
+                ingrediente.setTipoDeIngrediente(c.getString(c.getColumnIndex(IngredienteContract.Ingrediente.NOME_COLUNA_TIPO)));
+
+                ingredientes.add(ingrediente);
+            }
+            c.close();
+        }else{
+
+            String selection = IngredienteContract.Ingrediente._ID;
+            String[] args = {Long.toString(idIngrediente)};
+            c= db.query(
+                    IngredienteContract.Ingrediente.NOME_TABELA,
+                    null,
+                    selection,
+                    args,
+                    null,
+                    null,
+                    null
+
+            );
+
+            c.moveToFirst();
 
             ingrediente = new Ingrediente();
             ingrediente.setId(c.getInt(c.getColumnIndex(IngredienteContract.Ingrediente._ID)));
@@ -98,8 +126,13 @@ public class DaoIngrediente {
             ingrediente.setTipoDeIngrediente(c.getString(c.getColumnIndex(IngredienteContract.Ingrediente.NOME_COLUNA_TIPO)));
 
             ingredientes.add(ingrediente);
+
+            db.close();
         }
-        c.close();
+
+
+
+
 
         return ingredientes;
 
