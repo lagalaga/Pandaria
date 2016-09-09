@@ -27,12 +27,12 @@ public class DaoIngrediente {
         return db.insert(IngredienteContract.Ingrediente.NOME_TABELA, null, values) != -1;
     }
 
-    public boolean deletar(int id, SQLiteOpenHelper helper) {
+    public boolean deletar(long id, SQLiteOpenHelper helper) {
 
         db = helper.getReadableDatabase();
 
         String selection = IngredienteContract.Ingrediente._ID + " = ? ";
-        String[] selectionArgs = {Integer.toString(id)};
+        String[] selectionArgs = {Long.toString(id)};
 
         if(db.delete(IngredienteContract.Ingrediente.NOME_TABELA, selection, selectionArgs) != 0){
             db.close();
