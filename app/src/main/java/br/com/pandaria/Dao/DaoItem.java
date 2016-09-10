@@ -10,7 +10,7 @@ import java.util.List;
 
 import br.com.pandaria.Entity.Item;
 import br.com.pandaria.Entity.Produto;
-import br.com.pandaria.Entity.Venda;
+
 
 public class DaoItem {
 
