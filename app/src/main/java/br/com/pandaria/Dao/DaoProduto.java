@@ -143,7 +143,10 @@ public class DaoProduto {
             produto.setId(c.getLong(c.getColumnIndex(ProdutoContract.Produto._ID)));
             produto.setNome(c.getString(c.getColumnIndex(ProdutoContract.Produto.NOME_COLUNA_NOME)));
             produto.setPrecoDeVenda(c.getFloat(c.getColumnIndex(ProdutoContract.Produto.NOME_COLUNA_VALOR_DE_VENDA)));
-            produto.setIngrediente(c.getInt(c.getColumnIndex(ProdutoContract.Produto.NOME_COLUNA_IS_INGREDIENTE)));
+            produto.setIngrediente(
+                    c.getInt(
+                            c.getColumnIndex(ProdutoContract.Produto.NOME_COLUNA_IS_INGREDIENTE)) != 0
+            );
 
             produto.setIngredientes(dpi.listarIngredientes(idProd, db));
 
