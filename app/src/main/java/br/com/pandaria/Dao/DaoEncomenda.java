@@ -4,15 +4,16 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.text.Selection;
 
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import br.com.pandaria.Entity.Encomenda;
-import br.com.pandaria.Entity.Venda;
+
 
 public class DaoEncomenda {
 
@@ -87,11 +88,14 @@ public class DaoEncomenda {
 
     }
 
+    //REVISAR MÉTODO
+
     public List<Encomenda> listarEncomendas(SQLiteOpenHelper helper,Date dataInicial,Date dataFinal){
 
         this.db = helper.getReadableDatabase();
         List<Encomenda> encomendas = new ArrayList<>();
         Encomenda encomenda;
+        DaoItem daoItem = new DaoItem();
 
         SimpleDateFormat formatterParaClasse = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat formatterParaBd = new SimpleDateFormat("yyyy-MM-dd");
@@ -116,9 +120,30 @@ public class DaoEncomenda {
             encomenda = new Encomenda();
             encomenda.setId(c.getLong(c.getColumnIndex(VendaContract.Venda._ID)));
 
+            try {
+                encomenda.setDateVenda(formatterParaClasse.parse(c.getString(c.getColumnIndex(VendaContract.Venda.NOME_COLUNA_DATA))));
+            }catch (ParseException pex){
+                pex.printStackTrace();
+
+            }
+
+            encomenda.setCancelada(
+                    c.getInt(
+                            c.getColumnIndex(EncomendaContract.Encomenda.NOME_COLUNA_IS_CANCELADA)) != 0
+                    );
+            encomenda.setDescricao(c.getString(c.getColumnIndex(EncomendaContract.Encomenda.NOME_COLUNA_DESCRICAO)));
+            encomenda.setCliente(c.getString(c.getColumnIndex(EncomendaContract.Encomenda.NOME_COLUNA_CLIENTE)));
+            encomenda.setValor(c.getFloat(c.getColumnIndex(EncomendaContract.Encomenda.NOME_COLUNA_VALOR)));
+
+            encomenda.setItems(daoItem.listarItem(encomenda.getId(),db));
+
+            encomendas.add(encomenda);
+
+
         }
+        c.close();
 
-
+        return encomendas;
 
     }
 
