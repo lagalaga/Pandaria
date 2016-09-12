@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Pandaria</string>
+
+    <!-- Textos da tela Inserir Ingrediente -->
+    <string name="string_lblNomeIngre">Nome</string>
+    <string name="string_lblPesoIngre">Peso / Qtd. do pacote</string>
+    <string name="string_lblTipo">Tipo de Ingrediente</string>
+
+    <string name="hint_txtNomeIngre">Nome ou descrição do produto</string>,
+    <string name="hint_txtPesoIngre">Peso em kilos ou unidades</string>
+
+    <string name="string_btnIncluir">Incluir</string>
+
+
 </resources>
