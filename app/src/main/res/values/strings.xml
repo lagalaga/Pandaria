@@ -11,5 +11,10 @@
 
     <string name="string_btnIncluir">Incluir</string>
 
+    <!-- Textos da tela Listar Ingredientes-->
+    <string name="string_lblListaIngreVazia">Nenhum ingrediente cadastrado.\nClique no ícone + para cadastrar um novo ingrediente.</string>
+
+
+
 
 </resources>
