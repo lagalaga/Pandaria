@@ -27,8 +27,8 @@ public class InserirIngrediente extends AppCompatActivity {
         setContentView(R.layout.activity_inserir_ingrediente);
 
         final PandariaDbHelper dbHelper = new PandariaDbHelper(this);
-        final Toast mensagem = new Toast(this);
-        mensagem.setDuration(Toast.LENGTH_SHORT);
+        final Toast mensagem = Toast.makeText(this,null,Toast.LENGTH_SHORT);
+
 
         final EditText txtNome = (EditText) findViewById(R.id.txtNomeIngre);
         final EditText txtPeso = (EditText) findViewById(R.id.txtPesoIngre);
@@ -39,7 +39,7 @@ public class InserirIngrediente extends AppCompatActivity {
                 TipoDeIngrediente.EMBALAGEM.toString()
                 };
 
-        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item);
+        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,tipos);
         tipoIngrediente.setAdapter(adapter);
 
         btnIncluir.setOnClickListener(new View.OnClickListener() {
