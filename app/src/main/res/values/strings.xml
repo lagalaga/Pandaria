@@ -9,12 +9,14 @@
     <string name="hint_txtNomeIngre">Nome ou descrição do produto</string>,
     <string name="hint_txtPesoIngre">Peso em kilos ou unidades</string>
 
-    <string name="string_btnIncluir">Incluir</string>
+    <string name="string_btnIncluirIngre">Incluir</string>
 
     <!-- Textos da tela Listar Ingredientes-->
     <string name="string_lblListaIngreVazia">Nenhum ingrediente cadastrado.\nClique no ícone + para cadastrar um novo ingrediente.</string>
 
 
-
+    <!-- Textos da tela Editar Ingrediente -->
+    <string name="string_btnEditarIngre">Editar</string>
+    <string name="string_btnExcluirIngre">Excluir</string>
 
 </resources>
