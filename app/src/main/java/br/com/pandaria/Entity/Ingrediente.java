@@ -1,7 +1,9 @@
 package br.com.pandaria.Entity;
 
 
-public class Ingrediente {
+import java.io.Serializable;
+
+public class Ingrediente implements Serializable{
 
     private long id;
     private String nome;
