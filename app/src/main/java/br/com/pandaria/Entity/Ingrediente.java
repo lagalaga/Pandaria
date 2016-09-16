@@ -39,4 +39,9 @@ public class Ingrediente {
     public void setTipoDeIngrediente(String tipo) {
       this.tipoDeIngrediente = TipoDeIngrediente.valueOf(tipo);
     }
+
+    @Override
+    public String toString(){
+        return getNome();
+    }
 }
