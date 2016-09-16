@@ -1,5 +1,6 @@
 package br.com.pandaria.View;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -28,6 +29,7 @@ public class InserirIngrediente extends AppCompatActivity {
 
         final PandariaDbHelper dbHelper = new PandariaDbHelper(this);
         final Toast mensagem = Toast.makeText(this,null,Toast.LENGTH_SHORT);
+        final Context context = this;
 
 
         final EditText txtNome = (EditText) findViewById(R.id.txtNomeIngre);
@@ -50,7 +52,7 @@ public class InserirIngrediente extends AppCompatActivity {
                 ingrediente.setTipoDeIngrediente(tipoIngrediente.getSelectedItem().toString().trim());
                 ingrediente.setQtdDoPacote(Float.parseFloat(txtPeso.getText().toString().trim()));
 
-                if(new b_Ingrediente().b_Inserir(ingrediente,dbHelper)){
+                if(new b_Ingrediente().b_Inserir(ingrediente,context)){
                     mensagem.setText("Ingrediente Cadastrado");
                     mensagem.show();
                 }else{
