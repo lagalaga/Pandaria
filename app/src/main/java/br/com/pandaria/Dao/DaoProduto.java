@@ -1,6 +1,7 @@
 package br.com.pandaria.Dao;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -12,10 +13,17 @@ import java.util.Map;
 import br.com.pandaria.Entity.Ingrediente;
 import br.com.pandaria.Entity.Produto;
 
-public class DaoProduto {
-
-    private SQLiteDatabase db;
+public class DaoProduto extends PandariaDbHelper{
+    private Context context;
     private DaoProdutoIngrediente dpi = new DaoProdutoIngrediente();
+
+
+    public DaoProduto(Context context){
+        super(context);
+        this.context = context;
+    }
+
+
 
     public boolean inserir(Produto produto, SQLiteOpenHelper helper){
 
@@ -96,12 +104,12 @@ public class DaoProduto {
 
     }
 
-    public List<Produto> listarIngredientes(long idProd,SQLiteOpenHelper helper) {
+    public List<Produto> listarIngredientes(long idProd) {
 
-        this.db = helper.getReadableDatabase();
+        this.db = this.getReadableDatabase();
         List<Produto> produtos = new ArrayList<>();
         Produto produto;
-        DaoIngrediente daoIngrediente = new DaoIngrediente();
+        DaoIngrediente daoIngrediente = new DaoIngrediente(context);
         List<Ingrediente> ingredientes;
 
         Cursor c;
@@ -153,7 +161,7 @@ public class DaoProduto {
 
             for (Map.Entry<Ingrediente, Float> ingrediente : produto.getIngredientes().entrySet()) {
 
-                ingredientes = daoIngrediente.listarIngredientes(ingrediente.getKey().getId(),helper);
+                ingredientes = daoIngrediente.listarIngredientes(ingrediente.getKey().getId());
                 ingrediente.getKey().setNome(ingredientes.get(0).getNome());
                 ingrediente.getKey().setQtdDoPacote(ingredientes.get(0).getQtdDoPacote());
                 ingrediente.getKey().setTipoDeIngrediente(ingredientes.get(0).getTipoDeIngrediente().toString());

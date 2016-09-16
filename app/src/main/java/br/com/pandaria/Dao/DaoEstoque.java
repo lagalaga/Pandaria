@@ -1,6 +1,7 @@
 package br.com.pandaria.Dao;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -14,13 +15,17 @@ import java.util.List;
 import br.com.pandaria.Entity.Estoque;
 import br.com.pandaria.Entity.Ingrediente;
 
-public class DaoEstoque {
+public class DaoEstoque extends PandariaDbHelper {
 
-    SQLiteDatabase db;
+    private Context context;
+    public DaoEstoque(Context context){
+        super(context);
+        this.context = context;
+    }
 
-    public boolean inserir(Estoque estoque, SQLiteOpenHelper helper){
+    public boolean inserir(Estoque estoque){
 
-        this.db = helper.getWritableDatabase();
+        this.db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(EstoqueContract.Estoque.NOME_COLUNA_DATA_ENTRADA,estoque.getData().toString());
@@ -38,7 +43,7 @@ public class DaoEstoque {
 
     }
 
-    public boolean deletar(long id,SQLiteOpenHelper helper){
+    public boolean deletar(long id){
 
         String selection = EstoqueContract.Estoque._ID + " = ?";
         String[] args = {Long.toString(id)};
@@ -53,13 +58,13 @@ public class DaoEstoque {
         }
     }
 
-    public List<Estoque> listarEstoque(Date dataInicial, Date dataFinal,SQLiteOpenHelper helper) {
+    public List<Estoque> listarEstoque(Date dataInicial, Date dataFinal) {
 
-        this.db = helper.getReadableDatabase();
+        this.db = this.getReadableDatabase();
         List<Estoque> estoques = new ArrayList<>();
         Estoque estoque;
         List<Ingrediente> ingredientes;
-        DaoIngrediente daoIngrediente = new DaoIngrediente();
+        DaoIngrediente daoIngrediente = new DaoIngrediente(context);
 
         SimpleDateFormat formatterParaClasse = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat formatterParaBd = new SimpleDateFormat("yyyy-MM-dd");
@@ -101,7 +106,7 @@ public class DaoEstoque {
             estoque.getIngrediente().setId(c.getLong(c.getColumnIndex(EstoqueContract.Estoque.NOME_COLUNA_FK_INGREDIENTE)));
 
             //Busca o ingrediente
-            ingredientes = daoIngrediente.listarIngredientes(estoque.getIngrediente().getId(),helper);
+            ingredientes = daoIngrediente.listarIngredientes(estoque.getIngrediente().getId());
 
             estoque.getIngrediente().setNome(ingredientes.get(0).getNome());
             estoque.getIngrediente().setQtdDoPacote(ingredientes.get(0).getQtdDoPacote());

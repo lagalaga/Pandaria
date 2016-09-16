@@ -1,6 +1,7 @@
 package br.com.pandaria.Dao;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -11,13 +12,15 @@ import java.util.List;
 
 import br.com.pandaria.Entity.Ingrediente;
 
-public class DaoIngrediente {
+public class DaoIngrediente extends PandariaDbHelper {
 
-    private SQLiteDatabase db;
+    public DaoIngrediente(Context context){
+        super(context);
+    }
 
-    public boolean inserir(Ingrediente ingrediente, SQLiteOpenHelper helper){
+    public boolean inserir(Ingrediente ingrediente){
 
-        this.db = helper.getWritableDatabase();
+        this.db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(IngredienteContract.Ingrediente.NOME_COLUNA_NOME,ingrediente.getNome());
@@ -27,9 +30,9 @@ public class DaoIngrediente {
         return db.insert(IngredienteContract.Ingrediente.NOME_TABELA, null, values) != -1;
     }
 
-    public boolean deletar(long id, SQLiteOpenHelper helper) {
+    public boolean deletar(long id) {
 
-        db = helper.getReadableDatabase();
+        this.db = this.getReadableDatabase();
 
         String selection = IngredienteContract.Ingrediente._ID + " = ? ";
         String[] selectionArgs = {Long.toString(id)};
@@ -44,9 +47,9 @@ public class DaoIngrediente {
 
     }
 
-    public boolean atualizar(Ingrediente ingrediente, SQLiteOpenHelper helper) {
+    public boolean atualizar(Ingrediente ingrediente) {
 
-        this.db = helper.getReadableDatabase();
+        this.db = this.getReadableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(IngredienteContract.Ingrediente.NOME_COLUNA_NOME, ingrediente.getNome());
@@ -65,9 +68,9 @@ public class DaoIngrediente {
         }
     }
 
-    public List<Ingrediente> listarIngredientes(long idIngrediente,SQLiteOpenHelper helper){
+    public List<Ingrediente> listarIngredientes(long idIngrediente){
 
-        this.db = helper.getReadableDatabase();
+        this.db = this.getReadableDatabase();
         List<Ingrediente> ingredientes = new ArrayList<>();
         Ingrediente ingrediente;
         Cursor c;
