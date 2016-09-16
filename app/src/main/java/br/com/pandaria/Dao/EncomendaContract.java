@@ -29,7 +29,10 @@ public final class EncomendaContract {
                     Encomenda.NOME_COLUNA_VALOR + FLOAT_TYPE + COMMA_SEP +
                     Encomenda.NOME_COLUNA_DESCRICAO + TEXT_TYPE + COMMA_SEP +
                     Encomenda.NOME_COLUNA_IS_CANCELADA + BOOLEAN_TYPE + COMMA_SEP +
-                    Encomenda.NOME_COLUNA_FK_VENDA + INTEGER_TYPE +
+                    Encomenda.NOME_COLUNA_FK_VENDA + INTEGER_TYPE + COMMA_SEP +
+                    " FOREIGN KEY(" + Encomenda.NOME_COLUNA_FK_VENDA + ") " +
+                    "REFERENCES " + VendaContract.Venda.NOME_TABELA +
+                    "(" + VendaContract.Venda._ID + ")" +
                     " )";
 
     protected static final String SQL_DELETE_ENTRIES =

@@ -26,8 +26,11 @@ public final class EstoqueContract {
                     Estoque._ID + " INTEGER PRIMARY KEY," +
                     Estoque.NOME_COLUNA_QTD + INTEGER_TYPE + COMMA_SEP +
                     Estoque.NOME_COLUNA_DATA_ENTRADA + DATE_TYPE + COMMA_SEP +
-                    Estoque.NOME_COLUNA_PRECO_UNIT + FLOAT_TYPE +COMMA_SEP +
-                    Estoque.NOME_COLUNA_FK_INGREDIENTE + INTEGER_TYPE +
+                    Estoque.NOME_COLUNA_PRECO_UNIT + FLOAT_TYPE + COMMA_SEP +
+                    Estoque.NOME_COLUNA_FK_INGREDIENTE + INTEGER_TYPE + COMMA_SEP +
+                    "FOREIGN KEY(" + Estoque.NOME_COLUNA_FK_INGREDIENTE +
+                    ") REFERENCES " + IngredienteContract.Ingrediente.NOME_TABELA +
+                    "(" + IngredienteContract.Ingrediente._ID + ")" +
                     " )";
 
     protected static final String SQL_DELETE_ENTRIES =

@@ -21,7 +21,13 @@ public final class ItemContract {
             "CREATE TABLE " + Item.NOME_TABELA + " (" +
                     Item.NOME_COLUNA_FK_PRODUTO + INTEGER_TYPE + COMMA_SEP +
                     Item.NOME_COLUNA_FK_VENDA + INTEGER_TYPE + COMMA_SEP +
-                    Item.NOME_COLUNA_QTD + INTEGER_TYPE +
+                    Item.NOME_COLUNA_QTD + INTEGER_TYPE + COMMA_SEP +
+                    " FOREIGN KEY(" + Item.NOME_COLUNA_FK_PRODUTO + ")"+
+                    " REFERENCES " + ProdutoContract.Produto.NOME_TABELA +
+                    "(" + ProdutoContract.Produto._ID + ")" + COMMA_SEP +
+                    " FOREIGN KEY(" + Item.NOME_COLUNA_FK_VENDA + ")"+
+                    " REFERENCES " + VendaContract.Venda.NOME_TABELA +
+                    "(" + VendaContract.Venda._ID + ")" +
                     " )";
 
     protected static final String SQL_DELETE_ENTRIES =
