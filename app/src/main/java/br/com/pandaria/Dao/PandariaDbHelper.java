@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class PandariaDbHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "pandaria.db";
     protected SQLiteDatabase db;
 
@@ -23,11 +23,18 @@ public class PandariaDbHelper extends SQLiteOpenHelper {
         db.execSQL(ProdutoContract.SQL_CREATE_ENTRIES);
         db.execSQL(ProdutoIngredienteContract.SQL_CREATE_ENTRIES);
         db.execSQL(VendaContract.SQL_CREATE_ENTRIES);
-
     }
 
     public void onUpgrade(SQLiteDatabase db,int oldVersion,int newVersion){
-        System.out.println("not implemented yet");
+        db.execSQL(IngredienteContract.SQL_DELETE_ENTRIES);
+        db.execSQL(DespesaContract.SQL_DELETE_ENTRIES);
+        db.execSQL(EncomendaContract.SQL_DELETE_ENTRIES);
+        db.execSQL(EstoqueContract.SQL_DELETE_ENTRIES);
+        db.execSQL(ItemContract.SQL_DELETE_ENTRIES);
+        db.execSQL(ProdutoContract.SQL_DELETE_ENTRIES);
+        db.execSQL(ProdutoIngredienteContract.SQL_DELETE_ENTRIES);
+        db.execSQL(VendaContract.SQL_DELETE_ENTRIES);
+        onCreate(db);
     }
 
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
