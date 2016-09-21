@@ -15,7 +15,7 @@ import br.com.pandaria.Entity.Produto;
 
 public class DaoProduto extends PandariaDbHelper{
     private Context context;
-    private DaoProdutoIngrediente dpi = new DaoProdutoIngrediente();
+    private DaoProdutoIngrediente dpi = new DaoProdutoIngrediente(context);
 
 
     public DaoProduto(Context context){
@@ -25,9 +25,9 @@ public class DaoProduto extends PandariaDbHelper{
 
 
 
-    public boolean inserir(Produto produto, SQLiteOpenHelper helper){
+    public boolean inserir(Produto produto){
 
-        this.db = helper.getWritableDatabase();
+        this.db = getWritableDatabase();
 
         long idProduto;
 
@@ -41,7 +41,7 @@ public class DaoProduto extends PandariaDbHelper{
             idProduto = db.insert(IngredienteContract.Ingrediente.NOME_TABELA,null,values);
 
             for(Map.Entry<Ingrediente,Float> ingrediente : produto.getIngredientes().entrySet()){
-                dpi.inserir(idProduto,ingrediente.getKey().getId(),ingrediente.getValue(),db);
+                dpi.inserir(idProduto,ingrediente.getKey().getId(),ingrediente.getValue());
             }
 
         }catch (Exception ex){
@@ -54,16 +54,16 @@ public class DaoProduto extends PandariaDbHelper{
 
     }
 
-    public boolean deletar(long id, SQLiteOpenHelper helper) {
+    public boolean deletar(long id) {
 
-        db = helper.getReadableDatabase();
+        db = getReadableDatabase();
 
         String selection = ProdutoContract.Produto._ID + " = ? ";
         String[] selectionArgs = {Long.toString(id)};
 
         try{
             db.delete(ProdutoContract.Produto.NOME_TABELA, selection, selectionArgs);
-            dpi.deletar(id,db);
+            dpi.deletar(id);
 
         }catch (Exception ex){
             ex.printStackTrace();
