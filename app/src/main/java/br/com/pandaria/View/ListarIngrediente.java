@@ -40,15 +40,6 @@ public class ListarIngrediente extends AppCompatActivity {
         final ListView listaIngre = (ListView) findViewById(R.id.list_ingredientes);
 
 
-        //somente para teste. Apagar depois
-        Ingrediente testeIngre = new Ingrediente();
-        testeIngre.setId(1);
-        testeIngre.setNome("andrezao");
-        testeIngre.setQtdDoPacote(1.2F);
-        testeIngre.setTipoDeIngrediente(TipoDeIngrediente.EMBALAGEM.toString());
-        ingredientes.add(testeIngre);
-
-
         if(ingredientes.isEmpty()){
             TextView txt = new TextView(this);
             txt.setText(R.string.string_lblListaIngreVazia);
@@ -73,8 +64,8 @@ public class ListarIngrediente extends AppCompatActivity {
                     Ingrediente ingredienteSelecionado = (Ingrediente) listaIngre.getItemAtPosition(position);
                     Intent intent = new Intent(ListarIngrediente.this,EditarIngrediente.class);
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("teste",(Serializable)ingredienteSelecionado);
-                    intent.putExtra("objeto",bundle);
+                    bundle.putSerializable("ingreSelect",(Serializable)ingredienteSelecionado);
+                    intent.putExtra("b_ingre",bundle);
                     startActivity(intent);
 
 
