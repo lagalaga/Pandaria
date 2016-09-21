@@ -91,7 +91,7 @@ public class DaoProduto extends PandariaDbHelper{
         try{
             db.update(ProdutoContract.Produto.NOME_TABELA, values, selection, selectionArgs);
             for(Map.Entry<Ingrediente,Float> ingrediente : produto.getIngredientes().entrySet()){
-                dpi.inserir(produto.getId(),ingrediente.getKey().getId(),ingrediente.getValue(),db);
+                dpi.inserir(produto.getId(),ingrediente.getKey().getId(),ingrediente.getValue());
             }
         }catch (Exception ex){
             ex.printStackTrace();
@@ -104,7 +104,7 @@ public class DaoProduto extends PandariaDbHelper{
 
     }
 
-    public List<Produto> listarIngredientes(long idProd) {
+    public List<Produto> listarProdutos(long idProd) {
 
         this.db = this.getReadableDatabase();
         List<Produto> produtos = new ArrayList<>();
@@ -156,7 +156,7 @@ public class DaoProduto extends PandariaDbHelper{
                             c.getColumnIndex(ProdutoContract.Produto.NOME_COLUNA_IS_INGREDIENTE)) != 0
             );
 
-            produto.setIngredientes(dpi.listarIngredientes(idProd, db));
+            produto.setIngredientes(dpi.listarIngredientes(idProd));
 
 
             for (Map.Entry<Ingrediente, Float> ingrediente : produto.getIngredientes().entrySet()) {
