@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+
 import com.example.silvasoa2.pandaria.R;
 
 import br.com.pandaria.Business.b_Ingrediente;
@@ -29,8 +30,8 @@ public class EditarIngrediente extends AppCompatActivity {
 
         //Pega ingrediente da outra Activity
         Intent i = getIntent();
-        Bundle bundle = i.getBundleExtra("objeto");
-        final Ingrediente ingrediente = (Ingrediente) bundle.get("teste");
+        Bundle bundle = i.getBundleExtra("ingreSelect");
+        final Ingrediente ingrediente = (Ingrediente) bundle.get("b_ingre");
 
 
         //Pega os elementos da activity
