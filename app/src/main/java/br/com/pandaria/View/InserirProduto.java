@@ -3,6 +3,7 @@ package br.com.pandaria.View;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,10 +18,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.pandaria.Dao.DaoIngrediente;
-import br.com.pandaria.Dao.IngredienteContract;
 import br.com.pandaria.Entity.Ingrediente;
+import br.com.pandaria.Entity.Produto;
+import br.com.pandaria.Utility.AdapterListIngredienteProduto;
 
 public class InserirProduto extends AppCompatActivity {
+
+    AdapterListIngredienteProduto adapterIngreProd = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +40,7 @@ public class InserirProduto extends AppCompatActivity {
         final ExpandableListView lstIngrediente = (ExpandableListView) findViewById(R.id.explstIngrediente);
 
         //Listar todos os ingredientes
-        List<Ingrediente> ingredientes = new DaoIngrediente(this).listarIngredientes(0);
+       List<Ingrediente> ingredientes = new DaoIngrediente(this).listarIngredientes(0);
 
         //TODO testar as lists APAGAR ISSO DEPOIS
         Ingrediente ingreTeste;
@@ -61,19 +65,31 @@ public class InserirProduto extends AppCompatActivity {
             }
         }
 
-        //Popula a lista de embalagens
-        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,embalagens);
-        lstEmbalagens.setAdapter(adapter);
-
         //Popula a lista de ingredientes
-        adapter = new ArrayAdapter(this,android.R.layout.simple_expandable_list_item_1,ingredientes);
-        lstIngrediente.setAdapter(adapter);
+        adapterIngreProd = new AdapterListIngredienteProduto(
+                this,
+                R.layout.ingre_tela_produto,
+                (ArrayList<Ingrediente>) ingredientes);
+        lstIngrediente.setAdapter(adapterIngreProd);
+
+        //Popula a lista de embalagens
+        adapterIngreProd = new AdapterListIngredienteProduto(
+                this,
+                R.layout.ingre_tela_produto,
+                (ArrayList<Ingrediente>) embalagens);
+        lstEmbalagens.setAdapter(adapterIngreProd);
 
 
+        btnIncluir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Produto produto = new Produto();
+                produto.setNome(txtNome.getText().toString());
+                produto.setPrecoDeVenda(Float.parseFloat(txtPreco.getText().toString()));
 
 
-
-
+            }
+        });
 
     }
 }
