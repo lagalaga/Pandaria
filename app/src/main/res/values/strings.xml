@@ -18,5 +18,18 @@
     <!-- Textos da tela Editar Ingrediente -->
     <string name="string_btnEditarIngre">Editar</string>
     <string name="string_btnExcluirIngre">Excluir</string>
+    
+    <!-- Textos da tela Inserir Produto -->
+    <string name="string_lblNomeProduto">Nome</string>
+    <string name="string_lblPrecoProduto">Preço</string>
+    <string name="string_lblListaIngrediente">Selecione os ingredientes</string>
+    <string name="string_lblListaEmbalagem">Selecione a embalagem</string>
+    <string name="string_lblCustoProduto">Custo do produto</string>
+    <string name="string_lblCustoCalculado">R$ 0,00</string>
+
+    <string name="hint_txtNomeProduto">Ex:Bolo de Chocolate,Coxinha</string>
+    <string name="hint_txtPrecoProduto">Preço vendido</string>
+
+    <string name="string_btnIncluir">Incluir</string>
 
 </resources>
