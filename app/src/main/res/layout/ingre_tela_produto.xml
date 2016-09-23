@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="6dip" >
+
+    <CheckBox
+        android:id="@+id/cbx_ingre_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+       />
+
+    <TextView
+        android:id="@+id/lbl_nome_ingre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/cbx_ingre_select"
+        android:layout_alignBottom="@+id/cbx_ingre_select"
+        android:layout_toRightOf="@+id/cbx_ingre_select"
+        android:text="testestste"
+
+        />
+    <EditText
+        android:id="@+id/txtIngreQtdUsada"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/lbl_nome_ingre"
+        android:layout_alignBottom="@+id/lbl_nome_ingre"
+        android:layout_alignParentRight="true"
+        android:hint="Kg/Unid"/>
+
+</RelativeLayout>
