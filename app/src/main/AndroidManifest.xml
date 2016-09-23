@@ -7,8 +7,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        >
+        android:theme="@style/AppTheme">
         <activity android:name="br.com.pandaria.View.ListarIngrediente">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,10 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="br.com.pandaria.View.InserirIngrediente">
-
-        </activity>
-        <activity android:name="br.com.pandaria.View.EditarIngrediente"></activity>
+        <activity android:name="br.com.pandaria.View.InserirIngrediente"></activity>
+        <activity android:name="br.com.pandaria.View.EditarIngrediente" />
+        <activity android:name="br.com.pandaria.View.InserirProduto"></activity>
     </application>
 
 </manifest>
