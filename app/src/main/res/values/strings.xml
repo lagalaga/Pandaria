@@ -32,4 +32,7 @@
 
     <string name="string_btnIncluir">Incluir</string>
 
+    <string name="dialog_qtd">Digite a quantidade utilizada</string>
+    <string name="dialog_hint">Kg ou unidade</string>
+
 </resources>
