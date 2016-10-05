@@ -80,10 +80,11 @@
             android:textSize="25sp"
             android:textStyle="bold" />
 
-        <ExpandableListView
+        <ListView
             android:layout_width="match_parent"
             android:layout_height="150px"
-            android:id="@+id/explstIngrediente"/>
+            android:id="@+id/lstIngrediente"
+            android:scrollbars="vertical"/>
 
         <TextView
             android:layout_width="wrap_content"
