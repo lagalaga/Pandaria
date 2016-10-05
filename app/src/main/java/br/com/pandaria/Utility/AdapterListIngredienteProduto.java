@@ -1,12 +1,15 @@
 package br.com.pandaria.Utility;
 
 import android.content.Context;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.silvasoa2.pandaria.R;
@@ -23,6 +26,7 @@ public class AdapterListIngredienteProduto extends ArrayAdapter {
 
     private ArrayList<Ingrediente> ingredientes,ingredientesEscolhidos;
     private Context context;
+    private FragmentManager fragmentManager;
 
     public AdapterListIngredienteProduto(Context context,int textViewResourceId,
                                          ArrayList<Ingrediente> ingredientes){
@@ -31,6 +35,8 @@ public class AdapterListIngredienteProduto extends ArrayAdapter {
         this.ingredientes = new ArrayList<>();
         this.ingredientesEscolhidos = new ArrayList<>();
         ingredientes.addAll(ingredientes);
+        this.context = context;
+        this.fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
 
     }
 
@@ -63,11 +69,17 @@ public class AdapterListIngredienteProduto extends ArrayAdapter {
                 @Override
                 public void onClick(View v) {
                     CheckBox cb = (CheckBox) v;
-
                     Ingrediente ingrediente = (Ingrediente) cb.getTag();
+                    DialogListIngredienteProduto dialogQtd = DialogListIngredienteProduto.newInstance(ingrediente);
+
                     if(cb.isChecked()){
+                        ingrediente.setEscolhido(true);
+                        dialogQtd.show(fragmentManager,"");
                         ingredientesEscolhidos.add(ingrediente);
                     }else{
+                        ingrediente.setEscolhido(false);
+                        ListView listView = (ListView) ((AppCompatActivity) context).findViewById(R.id.lstIngrediente);
+                        listView.setAdapter(new AdapterListIngredienteProduto(context,R.layout.ingre_tela_produto,ingredientes));
                         ingredientesEscolhidos.remove(ingrediente);
                     }
                 }
@@ -79,6 +91,7 @@ public class AdapterListIngredienteProduto extends ArrayAdapter {
 
         Ingrediente ingrediente = ingredientes.get(position);
         holder.nome.setText(ingrediente.getNome());
+        holder.escolha.setChecked(ingrediente.isEscolhido());
         holder.escolha.setTag(ingrediente);
 
         return convertView;
