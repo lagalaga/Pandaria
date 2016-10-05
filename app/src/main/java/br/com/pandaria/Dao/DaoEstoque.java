@@ -58,6 +58,8 @@ public class DaoEstoque extends PandariaDbHelper {
         }
     }
 
+
+    //Lista todos dos registros por intervalo de data
     public List<Estoque> listarEstoque(Date dataInicial, Date dataFinal) {
 
         this.db = this.getReadableDatabase();
@@ -119,4 +121,53 @@ public class DaoEstoque extends PandariaDbHelper {
         c.close();
         return estoques;
     }
+
+    public List<Estoque> buscarEstoquesPorIngrediente(long id){
+
+        this.db = getReadableDatabase();
+        List<Estoque> estoques = new ArrayList<>();
+        Estoque estoque;
+        String selection = EstoqueContract.Estoque.NOME_COLUNA_FK_INGREDIENTE + " = ?";
+        String[] args = {Long.toString(id)};
+        String order = EstoqueContract.Estoque.NOME_COLUNA_DATA_ENTRADA + " DESC";
+
+        Cursor c = db.query(
+                EstoqueContract.Estoque.NOME_TABELA,
+                null,
+                selection,
+                args,
+                null,
+                null,
+                order
+        );
+
+        c.moveToFirst();
+        while (c.moveToNext()){
+
+            estoque = new Estoque();
+            estoque.setId(c.getLong(c.getColumnIndex(EstoqueContract.Estoque._ID)));
+            estoque.setPrecoUnit(c.getFloat(c.getColumnIndex(EstoqueContract.Estoque.NOME_COLUNA_PRECO_UNIT)));
+            estoque.setQtdDePacotes(c.getFloat(c.getColumnIndex(EstoqueContract.Estoque.NOME_COLUNA_QTD)));
+
+            SimpleDateFormat formatterParaClasse = new SimpleDateFormat("dd/MM/yyyy");
+
+            try{
+                estoque.setData(
+
+                        formatterParaClasse.parse(
+                                c.getString(
+                                        c.getColumnIndex(
+                                                EstoqueContract.Estoque.NOME_COLUNA_DATA_ENTRADA))));
+            }catch (ParseException pex){
+                pex.printStackTrace();
+            }
+
+            estoques.add(estoque);
+
+
+        }
+        c.close();
+        return estoques;
+    }
+
 }
