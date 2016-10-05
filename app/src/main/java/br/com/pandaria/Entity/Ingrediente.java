@@ -9,6 +9,7 @@ public class Ingrediente implements Serializable{
     private String nome;
     private float qtdDoPacote;
     private TipoDeIngrediente tipoDeIngrediente;
+    private boolean escolhido;
 
     public long getId() {
         return id;
@@ -36,6 +37,14 @@ public class Ingrediente implements Serializable{
 
     public TipoDeIngrediente getTipoDeIngrediente() {
         return tipoDeIngrediente;
+    }
+
+    public boolean isEscolhido() {
+        return escolhido;
+    }
+
+    public void setEscolhido(boolean escolhido) {
+        this.escolhido = escolhido;
     }
 
     public void setTipoDeIngrediente(String tipo) {
