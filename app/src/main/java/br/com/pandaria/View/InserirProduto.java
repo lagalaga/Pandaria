@@ -49,7 +49,7 @@ public class InserirProduto extends AppCompatActivity implements DialogListIngre
 
 
         //Listar todos os ingredientes
-    ingredientes = new DaoIngrediente(this).listarIngredientes(0);
+         ingredientes = new DaoIngrediente(this).listarIngredientes(0);
 
         //TODO testar as lists APAGAR ISSO DEPOIS
         Ingrediente ingreTeste;
@@ -115,18 +115,7 @@ public class InserirProduto extends AppCompatActivity implements DialogListIngre
 
     private void preencheLista(List<Ingrediente> ingredientes){
 
-        final ListView lstEmbalagens = (ListView) findViewById(R.id.lstEmbalagemTelaProdutos);
-        final ExpandableListView lstIngrediente = (ExpandableListView) findViewById(R.id.explstIngrediente);
-
-
-        //Separa ingredientes entre embalagem e ingrediente
-        List<Ingrediente> embalagens = new ArrayList<>();
-        for(Ingrediente ingrediente : ingredientes){
-            if(ingrediente.getTipoDeIngrediente().toString().equalsIgnoreCase("embalagem")){
-                embalagens.add(ingrediente);
-                ingredientes.remove(ingrediente);
-            }
-        }
+        final ListView lstIngrediente = (ListView) findViewById(R.id.lstIngrediente);
 
         //Popula a lista de ingredientes
         adapterIngreProd = new AdapterListIngredienteProduto(
@@ -134,15 +123,6 @@ public class InserirProduto extends AppCompatActivity implements DialogListIngre
                 R.layout.ingre_tela_produto,
                 (ArrayList<Ingrediente>) ingredientes);
         lstIngrediente.setAdapter(adapterIngreProd);
-
-        //Popula a lista de embalagens
-        adapterIngreProd = new AdapterListIngredienteProduto(
-                this,
-                R.layout.ingre_tela_produto,
-                (ArrayList<Ingrediente>) embalagens);
-        lstEmbalagens.setAdapter(adapterIngreProd);
-
-
 
 
     }
