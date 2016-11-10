@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Pandaria</string>
 
+    <!-- Texto do botão incluir para todas as telas -->
+    <string name="string_btnIncluir">Incluir</string>
+
+
     <!-- Textos da tela Inserir Ingrediente -->
     <string name="string_lblNomeIngre">Nome</string>
     <string name="string_lblPesoIngre">Peso / Qtd. do pacote</string>
@@ -9,7 +13,7 @@
     <string name="hint_txtNomeIngre">Nome ou descrição do produto</string>,
     <string name="hint_txtPesoIngre">Peso em kilos ou unidades</string>
 
-    <string name="string_btnIncluirIngre">Incluir</string>
+
 
     <!-- Textos da tela Listar Ingredientes-->
     <string name="string_lblListaIngreVazia">Nenhum ingrediente cadastrado.\nClique no ícone + para cadastrar um novo ingrediente.</string>
@@ -18,7 +22,7 @@
     <!-- Textos da tela Editar Ingrediente -->
     <string name="string_btnEditarIngre">Editar</string>
     <string name="string_btnExcluirIngre">Excluir</string>
-    
+
     <!-- Textos da tela Inserir Produto -->
     <string name="string_lblNomeProduto">Nome</string>
     <string name="string_lblPrecoProduto">Preço</string>
@@ -30,9 +34,17 @@
     <string name="hint_txtNomeProduto">Ex:Bolo de Chocolate,Coxinha</string>
     <string name="hint_txtPrecoProduto">Preço vendido</string>
 
-    <string name="string_btnIncluir">Incluir</string>
-
     <string name="dialog_qtd">Digite a quantidade utilizada</string>
     <string name="dialog_hint">Kg ou unidade</string>
+
+    <!-- Textos da tela Inserir Despesa -->
+    <string name="string_lblDescricaoDespesa">Descrição</string>
+    <string name="string_lblValorDespesa">Valor</string>
+    <string name="string_lblDespesasDia">Despesas do Dia</string>
+    <string name="string_lblValorTotalDespesa">Valor Total</string>
+
+    <string name="hint_txtDescricaoDespesa">Ex: Água,Luz,Transporte,...</string>
+    <string name="hint_txtValorDespesa">Valor gasto</string>
+
 
 </resources>
