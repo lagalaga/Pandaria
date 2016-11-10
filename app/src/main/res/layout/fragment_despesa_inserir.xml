@@ -1,0 +1,84 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.com.pandaria.View.despesa_inserir"
+    android:background="@color/background">
+
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/lblDespesaDescricao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/string_lblDescricaoDespesa"
+            style="@style/TemaDasLables"/>
+        <EditText
+            android:id="@+id/txtDespesaDescricao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lblDespesaDescricao"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:hint="@string/hint_txtDescricaoDespesa"/>
+
+        <TextView
+            android:id="@+id/lblDespesaValor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/string_lblValorDespesa"
+            android:layout_below="@id/txtDespesaDescricao"
+            android:padding="@dimen/activity_horizontal_margin"
+            style="@style/TemaDasLables"/>
+        <EditText
+            android:id="@+id/txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/lblDespesaValor"
+            android:layout_below="@id/txtDespesaDescricao"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:hint="@string/hint_txtValorDespesa"/>
+
+        <TextView
+            android:id="@+id/lblDespesaDia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/string_lblDespesasDia"
+            android:layout_below="@id/lblDespesaValor"
+            android:padding="@dimen/activity_horizontal_margin"
+            style="@style/TemaDasLables"/>
+        <ListView
+            android:id="@+id/listDespesasDia"
+            android:layout_width="match_parent"
+            android:layout_height="450px"
+            android:layout_below="@id/lblDespesaDia"/>
+
+        <TextView
+            android:id="@+id/lblDespesaValorTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/string_lblValorTotalDespesa"
+            android:layout_below="@id/listDespesasDia"
+            android:padding="@dimen/activity_horizontal_margin"
+            style="@style/TemaDasLables"/>
+        <TextView
+            android:id="@+id/lblDespesaValorTotalvalor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/listDespesasDia"
+            android:text="@string/string_lblCustoCalculado"
+            android:layout_toRightOf="@id/lblDespesaValorTotal"
+            style="@style/TemaDasLables"/>
+
+
+        <Button
+            android:id="@+id/btnIncluirDespesa"
+            android:text="@string/string_btnIncluir"
+            android:layout_alignParentRight="true"
+            style="@style/EstiloDoBotao"/>
+
+    </RelativeLayout>
+
+</FrameLayout>
