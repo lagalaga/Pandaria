@@ -71,7 +71,6 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -107,7 +106,7 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/btnIncluir"
-                android:text="@string/string_btnIncluirIngre"
+                android:text="@string/string_btnIncluir"
                 android:background="#08ad9d"
                 android:textColor="@color/abc_background_cache_hint_selector_material_light"
                 android:layout_alignParentRight="true"
