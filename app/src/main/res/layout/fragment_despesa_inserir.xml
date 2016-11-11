@@ -33,7 +33,7 @@
             android:padding="@dimen/activity_horizontal_margin"
             style="@style/TemaDasLables"/>
         <EditText
-            android:id="@+id/txt"
+            android:id="@+id/txtValorDespesa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/lblDespesaValor"
@@ -52,7 +52,7 @@
         <ListView
             android:id="@+id/listDespesasDia"
             android:layout_width="match_parent"
-            android:layout_height="450px"
+            android:layout_height="450dp"
             android:layout_below="@id/lblDespesaDia"/>
 
         <TextView
